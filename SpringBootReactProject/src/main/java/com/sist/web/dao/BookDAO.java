@@ -13,7 +13,7 @@ public interface BookDAO extends JpaRepository<Book, Integer>{
 			+ "LIMIT :start,12",nativeQuery=true)
 	public List<Book> bookListData(@Param("start") Integer start,@Param("title") String title);
 	
-	@Query(value="SELECT CEIL(COUNT(*)/12.0) FROM books WHERE title LIKE CONCAT('%',:title,'%')")
+	@Query(value="SELECT COUNT(*) FROM books WHERE title LIKE CONCAT('%',:title,'%')")
 	public int bookTotalPage(@Param("title") String title);
 	
 	public Book findByNo(int no);
